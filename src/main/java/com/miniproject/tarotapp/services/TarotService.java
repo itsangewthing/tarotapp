@@ -70,7 +70,7 @@ public class TarotService {
 
 /* GET 1 RANDOM CARD */
     
-    public Card getARandomCard(String name) {
+    public List<Card> getRandomCardByValue(Integer n) {
         
         Long ts = System.currentTimeMillis();
         String signature = "%d%s%s".formatted(ts, apiKey);
@@ -82,7 +82,7 @@ public class TarotService {
          */
 
          String searchUrl = UriComponentsBuilder.fromUriString(GET_A_RANDOM_CARD_URL)
-            .path(name)
+            .path("n")
             .queryParam("ts", ts)
             .queryParam("apikey", apiKey)
             .queryParam("hash", hash)
@@ -102,9 +102,16 @@ public class TarotService {
             JsonObject result = reader.readObject();
             JsonArray data = result.getJsonObject("data").getJsonArray("results");
 
-            Card c = Card.create(data.getJsonObject(0));
-                return c;
-        }
+            List<Card> cList = new LinkedList<>();
+                for (Integer i = 0; i < data.size(); i++) {
+                    cList.add(Card.create(data.getJsonObject(i)));
+                }
+
+                return cList;
+    }
+
+
+	
     
     }
 

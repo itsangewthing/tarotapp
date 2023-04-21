@@ -53,10 +53,10 @@ public class SearchController {
     @GetMapping(path="/cards/random?n=1", produces=MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     @CrossOrigin()
-    public ResponseEntity<String> getRandomCard(@RequestParam String name, @RequestParam int value_int, @RequestParam int offset) {
+    public ResponseEntity<String> getRandomCard( @RequestParam(value ="1", required = false) Integer n) {
         System.out.println("scheming through value_int to get random card");
 
-        List<Card> card = tarotSvc.getRandomCardByValue(name, value_int, offset);
+        List<Card> card = tarotSvc.getRandomCardByValue(n);
         
         JsonArrayBuilder jab = Json.createArrayBuilder();
         for (Card c : card) {

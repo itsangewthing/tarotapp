@@ -1,9 +1,13 @@
 package com.miniproject.tarotapp.models;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public class Cards {
+public class CardList {
     private Integer nhits;
     private String name_short;
     private String name;
@@ -13,6 +17,7 @@ public class Cards {
     private String meaning_reverse;
     private String desc;
 
+   
     public Integer getNhits() {
         return this.nhits;
     }
@@ -112,4 +117,73 @@ public class Cards {
             }
           }
     private TypeEnum type;
+    private List<Card> cards;
+
+    //////////////////
+
+                @Valid
+                public List<Card> getCards() {
+                List<Card> cards;
+                return cards;
+            }
+
+            public void setCards(List<Card> cards) {
+                this.cards = cards;
+            }
+
+                public List<Card> cards(List<Card> cards) {
+                    List<Card> cards;
+                    return cards;
+                
+                }
+                
+                public CardList addCardsItem(Card cardsItem) {
+                    if (this.cards == null) {
+                    this.cards = new ArrayList<Card>();
+                    }
+                    this.cards.add(cardsItem);
+                    return this;
+                }
+
+
+            @Override
+            public boolean equals(java.lang.Object o) {
+                if (this == o) {
+                return true;
+                }
+                if (o == null || getClass() != o.getClass()) {
+                return false;
+                }
+                CardList cardList = (CardList) o;
+                return Objects.equals(this.nhits, cardList.nhits) &&
+                    Objects.equals(this.cards, cardList.cards);
+            }
+
+            @Override
+            public int hashCode() {
+                return Objects.hash(nhits, cards);
+            }
+
+            @Override
+            public String toString() {
+                StringBuilder sb = new StringBuilder();
+                sb.append("class CardList {\n");
+                
+                sb.append("    nhits: ").append(toIndentedString(nhits)).append("\n");
+                sb.append("    cards: ").append(toIndentedString(cards)).append("\n");
+                sb.append("}");
+                return sb.toString();
+            }
+
+            /**
+             * Convert the given object to string with each line indented by 4 spaces
+             * (except the first line).
+             */
+            private String toIndentedString(java.lang.Object o) {
+                if (o == null) {
+                return "null";
+                }
+                return o.toString().replace("\n", "\n    ");
+            }
 }
+    
