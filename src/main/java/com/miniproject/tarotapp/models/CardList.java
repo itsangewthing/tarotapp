@@ -83,7 +83,7 @@ public class CardList {
     }
 
     public TypeEnum getType() {
-        return this.type;
+        return this.getType();
     }
 
     public void setType(TypeEnum type) {
@@ -116,27 +116,21 @@ public class CardList {
               return null;
             }
           }
-    private TypeEnum type;
-    private List<Card> cards;
+
+
 
     //////////////////
 
                 @Valid
                 public List<Card> getCards() {
-                List<Card> cards;
+                final List<Card> cards;
                 return cards;
             }
 
-            public void setCards(List<Card> cards) {
+                public void setCards(List<Card> cards) {
                 this.cards = cards;
             }
-
-                public List<Card> cards(List<Card> cards) {
-                    List<Card> cards;
-                    return cards;
-                
-                }
-                
+ 
                 public CardList addCardsItem(Card cardsItem) {
                     if (this.cards == null) {
                     this.cards = new ArrayList<Card>();
@@ -170,7 +164,7 @@ public class CardList {
                 sb.append("class CardList {\n");
                 
                 sb.append("    nhits: ").append(toIndentedString(nhits)).append("\n");
-                sb.append("    cards: ").append(toIndentedString(cards)).append("\n");
+                sb.append("    cards: ").append(toIndentedString(getCards())).append("\n");
                 sb.append("}");
                 return sb.toString();
             }

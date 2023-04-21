@@ -152,6 +152,9 @@ public class Card {
     }
  
 
+    private void setType(String string) {
+    }
+
     public static Card fromCache(JsonObject j) {
         final Card c = new Card();
 
@@ -170,7 +173,7 @@ public class Card {
     }
 
     public JsonObject toJSON() {
-        List<String> ty = getType();
+        List<String> ty = getType().toString();
         JsonArrayBuilder jab = Json.createArrayBuilder();
         for (int i = 0; i < ty.size(); i++) {
             jab.add(ty.get(i));

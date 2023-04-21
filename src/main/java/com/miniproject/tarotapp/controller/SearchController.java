@@ -6,7 +6,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.miniproject.tarotapp.models.Card;
-import com.miniproject.tarotapp.models.Value;
 import com.miniproject.tarotapp.respositories.RedisRepo;
 import com.miniproject.tarotapp.services.TarotService;
 
@@ -34,11 +33,11 @@ public class SearchController {
     @Autowired
     private RedisRepo redisRepo;
     
-    // SEARCH ALL CARDS
+    // SEARCH CARD BY NAME
     @GetMapping(path="./cards/search", produces=MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<String> search(@RequestParam("searchCards") String searchCards) {
-        List<Card> cards = tarotSvc.search(searchCards);
-        System.out.println(searchCards);
+    public ResponseEntity<String> search(@RequestParam("searchName") String searchName) {
+        List<Card> cards = tarotSvc.search(searchName);
+        System.out.println(searchName);
 
         JsonArrayBuilder jab = Json.createArrayBuilder();
         for (int i = 0; i < cards.size(); i++) {
