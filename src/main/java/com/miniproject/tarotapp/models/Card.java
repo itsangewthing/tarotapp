@@ -50,14 +50,29 @@ public class Card {
             }
           }
     private TypeEnum type;
+
+    @Override
+    public String toString() {
+        return "{" +
+            " name_short='" + getName_short() + "'" +
+            ", name='" + getName() + "'" +
+            ", value='" + getValue() + "'" +
+            ", value_int='" + getValue_int() + "'" +
+            ", meaning_up='" + getMeaning_up() + "'" +
+            ", meaning_reverse='" + getMeaning_reverse() + "'" +
+            ", desc='" + getDesc() + "'" +
+            ", type='" + getType() + "'" +
+            "}";
+    }
     
-    public TypeEnum getType() {
-        return type;
+    public String getType() {
+        return type.toString();
     }
 
-    public void setType(String string) {
+    public void setType(TypeEnum string) {
         this.type = string;
     }
+
 
     public String getName_short() {
         return this.name_short;
